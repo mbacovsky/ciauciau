@@ -3,6 +3,8 @@ CIAU CIAU - Configuration and Installation AUtomation
 
 Ciauciau is a simple set of script to automate installations of www.katello.org
 
+What the?!
+
 It's a very trivial "framework" written in Bash and you can leverage it
 for installation of various software projects. It has simple concept of 
 steps and plans, so you can schedule installations and configurations
@@ -35,8 +37,6 @@ Installation
 How it works
 ------------
 
-    Ciau Ciau provisioning script
-
     OPTIONS:
       -h    Show this message
       -p    Plan name (see ./plans directory)
@@ -46,10 +46,42 @@ How it works
 
     EXAMPLES:
 
-      bin/ciau -p nightly
-      bin/ciau -p nightly -x '(300|301)' -i 200-my-step.sh
-      bin/ciau -p nightly -e 'MIRROR=http://abc/nightly EPEL=http://xyz/pup/epel'
+      ciau -p nightly
+      ciau -p nightly -x '(300|301)' -i 200-my-step.sh
+      ciau -p nightly -e 'MIRROR=http://abc/nightly EPEL=http://xyz/pup/epel'
 
+Example scripts - Katello
+-------------------------
+
+To install Katello systems management cloud solution (www.katello.org) just do 
+this:
+
+    ciau -p nightly
+
+If you need to change repositories (e.g. you have closer mirror for Katello and 
+EPEL repos) setup those variables (see plans/nightly for more info):
+
+    export MIRROR=http://my.mirror.com/koji
+    export EPEL=http://my.epel.mirror.com/pub/fedora/epel
+    ciau -p nightly
+
+To see all available plans open the ./plans directory:
+
+https://github.com/lzap/ciauciau/tree/master/plans
+
+And to see particular steps (so you can skip them or create your own plans) 
+see:
+
+https://github.com/lzap/ciauciau/tree/master/steps
+
+Easy, huh?
+
+Why the name
+------------
+
+Because I can!
+
+![ciau ciau](http://images04.olx.lt/ui/2/97/15/25499215_1.jpg "Ciau Ciau")
 
 Credits and license
 -------------------
