@@ -6,6 +6,7 @@ alias kconf-reset='katello-configure -b --reset-data=YES'
 alias rst='katello-service restart'
 alias kk="$KATELLO_CLI -u admin -p admin"
 alias k="$KATELLO_CLI -u admin -p admin"
+alias pp="$KATELLO_CLI -u admin -p admin ping"
 alias gk='cd /usr/share/katello'
 alias gf='cd /usr/share/foreman'
 alias gkl='cd /var/log/katello'

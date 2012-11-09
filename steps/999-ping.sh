@@ -1,1 +1,2 @@
-k ping
+source ~/.bashrc
+pp

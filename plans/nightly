@@ -5,8 +5,9 @@ export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-candlepin"
 export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-pulp"
 export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-foreman"
 export KATELLO_REPO_BASEURL="$MIRROR/releases/yum/nightly"
-export ADDITIONAL_PACKAGES="screen git mc"
-export KATELLO_CONFIGURE_OPTIONS="-b --es-min-mem=64m --es-max-mem=64m"
+
+export ADDITIONAL_PACKAGES=${ADDITIONAL_PACKAGES:-screen git mc}
+export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --es-min-mem=64m --es-max-mem=64m}
 
 PLAN=(
 010-disable-iptables.sh
