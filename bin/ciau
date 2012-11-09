@@ -1,0 +1,76 @@
+#!/bin/bash
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BINDIR="$BASEDIR/../bin"
+PLANSDIR="$BASEDIR/../plans"
+STEPSDIR="$BASEDIR/../steps"
+
+usage() {
+cat <<USAGE
+usage: $0 -p plan_name
+
+Ciau Ciau provisioning script
+
+OPTIONS:
+  -h    Show this message
+  -p    Plan name (see ./plans directory)
+  -e    Evaluate statement before plan file (see plan file for options)
+  -x    Exclude one or more steps from the plan (grep syntax)
+  -i    Include extra steps to the plan (separate by space)
+
+EXAMPLES:
+
+  $0 -p nightly
+  $0 -p nightly -x '(300|301)' -i 200-my-step.sh
+  $0 -p nightly -e 'MIRROR=http://abc/nightly EPEL=http://xyz/pup/epel'
+
+USAGE
+}
+
+EVAL=""
+EXCLUDE="_NOT_EXISTING_"
+INCLUDE=""
+
+while getopts "hp:e:x:i:" opt; do
+  case $opt in
+    p)
+      PLANFILE="$OPTARG"
+      ;;
+    e)
+      EVAL="$OPTARG"
+      ;;
+    x)
+      EXCLUDE="$OPTARG"
+      ;;
+    i)
+      INCLUDE="$OPTARG"
+      ;;
+    h)
+      usage
+      exit
+      ;;
+    ?)
+      echo "Invalid option: $OPTARG" >&2
+      usage
+      exit
+      ;;
+  esac
+done
+
+if [ -z "$PLANFILE" ]; then
+  usage
+  exit 1
+fi
+
+function separator() {
+  printf "%$(tput cols)s\n"|tr ' ' '='
+}
+
+eval "$EVAL"
+source "$PLANSDIR/$PLANFILE"
+PLAN_SORTED=($(printf '%s\n' "${PLAN[@]}" $INCLUDE |grep -v "$EXCLUDE"|sort -u))
+echo Plan: ${PLAN_SORTED[@]}
+for STEP in "${PLAN_SORTED[@]}"; do
+  echo -e "\nExecuting $STEP"
+  separator
+  bash -x "$STEPSDIR/$STEP"
+done

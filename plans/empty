@@ -1,0 +1,7 @@
+#!/bin/bash
+export TEST=${TEST:-empty}
+PLAN=(
+001-noop.sh
+000-noop.sh
+000-noop.sh
+)
