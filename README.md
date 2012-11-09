@@ -74,7 +74,26 @@ see:
 
 https://github.com/lzap/ciauciau/tree/master/steps
 
-Easy, huh?
+Use the -i option to include particular steps which are not part of the plan 
+you want to use, use the -x option to "greo out" steps you do not want to do. 
+And using ENV variables you can change behavior of your plans.
+
+All steps are sorted before execution, therefore you can make sure your step is 
+on the correct place (before or after other step). If you are going to add 
+steps, make sure they have correct number and also unique name, so you can then 
+add steps easily:
+
+    ciau -p katello-1.1 -i "import-fake self-reg cli-tests upgrade-1.2"
+
+I will be slowly adding more and more plans - installation of stable katello 
+versions, running basic tests (manifest import, cli smoke tests), upgrade tests 
+and other things I run on a daily basis.
+
+Currently the only supported subject of interest is Katello, but if you like 
+Ciau Ciau, I would be happy to add multi-project support so one can switch 
+between "step suites" and plans.
+
+Easy, huh? Patches appreciated.
 
 Why the name
 ------------

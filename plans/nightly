@@ -13,5 +13,9 @@ PLAN=(
 300-setup-repos-manual.sh
 400-install-katello.sh
 500-configure-katello.sh
-999-updatedb.sh
+990-aliases.sh
+990-enable-services.sh
+990-start-goferd.sh
+990-updatedb.sh
+999-ping.sh
 )
