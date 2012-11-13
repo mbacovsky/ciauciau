@@ -1,10 +1,16 @@
 #!/bin/bash
 export MIRROR=${MIRROR:-http://fedorapeople.org/groups/katello}
 export EPEL=${EPEL:-http://dl.fedoraproject.org/pub/epel}
-export VERSION=${VERSION:-1.1}
-export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-candlepin"
-export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-pulp"
-export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-foreman"
+export VERSION=${VERSION:-nightly}
+if [ $VERSION == "nightly" ]; then
+  export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-candlepin"
+  export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-pulp"
+  export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-foreman"
+else
+  export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-candlepin"
+  export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-pulp"
+  export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-foreman"
+fi
 export KATELLO_REPO_BASEURL="$MIRROR/releases/yum/$VERSION"
 
 export ADDITIONAL_PACKAGES=${ADDITIONAL_PACKAGES:-screen git mc}
