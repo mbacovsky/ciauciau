@@ -46,9 +46,9 @@ How it works
 
     EXAMPLES:
 
-      ciau -p nightly
-      ciau -p nightly -x '(300|301)' -i 200-my-step.sh
-      ciau -p nightly -e 'MIRROR=http://abc/nightly EPEL=http://xyz/pup/epel'
+      ciau -p ktnightly
+      ciau -p ktnightly -x '(300|301)' -i 200-my-step.sh
+      ciau -p ktnightly -e 'MIRROR=http://abc/nightly EPEL=http://xyz/pup/epel'
 
 Example scripts - Katello
 -------------------------
@@ -56,16 +56,17 @@ Example scripts - Katello
 To install Katello systems management cloud solution (www.katello.org) just do 
 this:
 
-    ciau -p nightly
+    ciau -p kt -e 'VERSION=1.1'
 
 If you need to change repositories (e.g. you have closer mirror for Katello and 
-EPEL repos) setup those variables (see plans/nightly for more info):
+EPEL repos) setup those variables (see plans/ktnightly for more info):
 
     export MIRROR=http://my.mirror.com/koji
     export EPEL=http://my.epel.mirror.com/pub/fedora/epel
-    ciau -p nightly
+    ciau -p ktnightly
 
-To see all available plans open the ./plans directory:
+This installs nightly instead of stable release. To see all available plans 
+open the ./plans directory:
 
 https://github.com/lzap/ciauciau/tree/master/plans
 
