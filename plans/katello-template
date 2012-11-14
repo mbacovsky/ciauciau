@@ -1,0 +1,27 @@
+#!/bin/bash
+export MIRROR=${MIRROR:-http://fedorapeople.org/groups/katello}
+export EPEL=${EPEL:-http://dl.fedoraproject.org/pub/epel}
+export VERSION=${VERSION:-nightly}
+if [ $VERSION == "nightly" ]; then
+  export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-candlepin"
+  export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-pulp"
+  export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-foreman"
+else
+  export CANDLEPIN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-candlepin"
+  export PULP_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-pulp"
+  export FOREMAN_REPO_BASEURL="$MIRROR/releases/yum/katello-$VERSION-foreman"
+fi
+export KATELLO_REPO_BASEURL="$MIRROR/releases/yum/$VERSION"
+
+export ADDITIONAL_PACKAGES=${ADDITIONAL_PACKAGES:-screen git mc}
+export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --es-min-mem=64m --es-max-mem=64m}
+
+export PLAN=(
+010-disable-iptables.sh
+300-setup-repos-manual.sh
+990-aliases.sh
+990-enable-services.sh
+990-start-goferd.sh
+990-updatedb.sh
+999-ping.sh
+)
