@@ -1,8 +1,8 @@
 #!/bin/bash
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export BINDIR="$BASEDIR/../bin"
-export PLANSDIR="$BASEDIR/../plans"
-export STEPSDIR="$BASEDIR/../steps"
+export BINDIR=$(readlink -f "$BASEDIR/../bin")
+export PLANSDIR=$(readlink -f "$BASEDIR/../plans")
+export STEPSDIR=$(readlink -f "$BASEDIR/../steps")
 
 usage() {
 cat <<USAGE

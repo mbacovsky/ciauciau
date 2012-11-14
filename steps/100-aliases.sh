@@ -27,4 +27,3 @@ complete -F _katello k
 EOF
 
 source /root/.bashrc
-
