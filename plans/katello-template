@@ -18,8 +18,8 @@ export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --es-min-mem=64
 
 export PLAN=(
 010-disable-iptables.sh
+100-aliases.sh
 300-setup-repos-manual.sh
-990-aliases.sh
 990-enable-services.sh
 990-start-goferd.sh
 990-updatedb.sh
