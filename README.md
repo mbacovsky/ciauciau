@@ -37,6 +37,45 @@ Installation
 How it works
 ------------
 
+Ciao Ciao contains two directories, plans and steps. Let's start with steps:
+
+    # ls steps -1
+    000-noop.sh
+    001-noop.sh
+    010-disable-iptables.sh
+    100-aliases.sh
+    300-setup-repos-manual.sh
+    400-install-headpin.sh
+    400-install-katello.sh
+    499-listen-all.sh
+    499-make-fast.sh
+    500-configure-headpin.sh
+    500-configure-katello.sh
+    700-cli-tests.sh
+    990-enable-services.sh
+    990-start-goferd.sh
+    990-updatedb.sh
+    999-ping.sh
+
+Steps are just small bash scripts which are composed into plans. They are 
+*always* executed in order, therefore you can remove and add steps manually 
+using command line options and they will be always sorted before execution.
+
+Plans are bash scripts that sets environment variables required in these steps 
+and creates a bash array called PLAN which is then executed.
+
+    # ls plans -1
+    empty
+    hd
+    katello-template
+    kt
+
+Plans can inherit each other, by default there are two plans: kt installs 
+Katello nighty and hd installs Headpin nightly. They both inherit from 
+katello-template plan and add their own steps.
+
+Here are the options of the ciau script:
+
     OPTIONS:
       -h    Show this message
       -p    Plan name (see ./plans directory)
@@ -58,6 +97,9 @@ this:
 
     ciau -p kt -e 'VERSION=1.1'
 
+If you won't provide -e option, it will install nightly instead of the 
+specified stable version.
+
 If you need to change repositories (e.g. you have closer mirror for Katello and 
 EPEL repos) setup those variables (see plans/kt for more info):
 
@@ -65,8 +107,7 @@ EPEL repos) setup those variables (see plans/kt for more info):
     export EPEL=http://my.epel.mirror.com/pub/fedora/epel
     ciau -p kt
 
-This installs nightly instead of stable release. To see all available plans 
-open the ./plans directory:
+To see all available plans open the ./plans directory:
 
 https://github.com/lzap/ciauciau/tree/master/plans
 
