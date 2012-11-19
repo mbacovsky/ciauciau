@@ -5,6 +5,7 @@ alias paste="curl -F 'sprunge=<-' http://sprunge.us"
 alias kconf='katello-configure -b'
 alias kconf-reset='katello-configure -b --reset-data=YES'
 alias cdk='cd /usr/share/katello'
+alias cdf='cd /usr/share/foreman'
 alias kconsole='pushd /usr/share/katello; RAILS_ENV=production rails c; popd'
 alias rst='katello-service restart'
 alias psql-katello='sudo -u postgres psql katelloschema'
