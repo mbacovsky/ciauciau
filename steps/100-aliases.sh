@@ -4,7 +4,12 @@ KATELLO_CLI=$(type -P katello || type -P headpin)
 alias paste="curl -F 'sprunge=<-' http://sprunge.us"
 alias kconf='katello-configure -b'
 alias kconf-reset='katello-configure -b --reset-data=YES'
+alias cdk='cd /usr/share/katello'
+alias kconsole='pushd /usr/share/katello; RAILS_ENV=production rails c; popd'
 alias rst='katello-service restart'
+alias psql-katello='sudo -u postgres psql katelloschema'
+alias psql-candlepin='sudo -u postgres psql candlepin'
+alias psql-foreman='sudo -u postgres psql foreman'
 alias kk="$KATELLO_CLI -u admin -p admin"
 alias k="$KATELLO_CLI -u admin -p admin"
 alias ee="grep -iE '(err:|error|fatal|AVC)' /var/log/katello/katello-configure/*log /var/log/katello/*log /var/log/pulp/*log /var/log/tomcat6/catalina.out /var/log/audit/audit.log /var/log/httpd/*log | grep -viE '(msgid|msgstr|resteasy)'"
