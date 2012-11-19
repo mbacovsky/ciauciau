@@ -1,4 +1,5 @@
 cat >> /root/.bashrc <<'EOF'
+alias v=vim
 KATELLO_CLI=$(type -P katello || type -P headpin)
 alias paste="curl -F 'sprunge=<-' http://sprunge.us"
 alias kconf='katello-configure -b'
