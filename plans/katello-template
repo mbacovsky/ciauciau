@@ -14,7 +14,7 @@ fi
 export KATELLO_REPO_BASEURL="$MIRROR/releases/yum/$VERSION"
 
 export ADDITIONAL_PACKAGES=${ADDITIONAL_PACKAGES:-bash-completion screen git mc}
-export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --es-min-mem=64m --es-max-mem=64m}
+export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --db-password=katello --es-min-mem=64m --es-max-mem=64m}
 
 export PLAN=(
 010-disable-iptables.sh
