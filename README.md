@@ -107,6 +107,10 @@ EPEL repos) setup those variables (see plans/kt for more info):
     export EPEL=http://my.epel.mirror.com/pub/fedora/epel
     ciau -p kt
 
+To get particular SAM installation or SE installation type:
+
+    ciau -p sam -e 'THE_REPO="http://download/xx/yy/1.1/latest/"'
+
 To see all available plans open the ./plans directory:
 
 https://github.com/lzap/ciauciau/tree/master/plans

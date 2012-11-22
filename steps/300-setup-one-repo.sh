@@ -1,4 +1,4 @@
-cat > "$THE_REPO_NAME" <<EOF
+cat > "/etc/yum.repos.d/$THE_REPO_NAME.repo" <<EOF
 [$THE_REPO_NAME]
 name=$THE_REPO_NAME
 baseurl=$THE_REPO
