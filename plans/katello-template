@@ -19,7 +19,6 @@ export KATELLO_CONFIGURE_OPTIONS=${KATELLO_CONFIGURE_OPTIONS:--b --es-min-mem=64
 export PLAN=(
 010-disable-iptables.sh
 100-aliases.sh
-300-setup-repos-manual.sh
 499-make-fast.sh
 499-listen-all.sh
 990-enable-services.sh

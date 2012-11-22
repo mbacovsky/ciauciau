@@ -3,9 +3,12 @@
 # load template plan
 . $PLANSDIR/katello-template
 
+export THE_REPO_NAME=sam
+export THE_REPO="http://localhost/set/variable/THE_REPO"
+
 # add steps specific to this plan
 PLAN=(${PLAN[@]}
-300-setup-repos-katello.sh
+300-setup-one-repo.sh
 400-install-headpin.sh
-500-configure-headpin.sh
+500-configure-sam.sh
 )

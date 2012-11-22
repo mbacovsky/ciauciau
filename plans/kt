@@ -5,6 +5,7 @@
 
 # add steps specific to this plan
 PLAN=(${PLAN[@]}
+300-setup-repos-katello.sh
 400-install-katello.sh
 500-configure-katello.sh
 )
