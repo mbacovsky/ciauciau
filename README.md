@@ -110,6 +110,7 @@ EPEL repos) setup those variables (see plans/kt for more info):
 To get particular SAM installation or SE installation type:
 
     ciau -p sam -e 'THE_REPO="http://download/xx/yy/1.1/latest/"'
+    ciau -p se -e 'THE_REPO="http://download/xx/zz/2.0/latest/"'
 
 To see all available plans open the ./plans directory:
 
