@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# load template plan
+# $PLANSDIR/kt-devel
+
+# add steps specific to this plan
+#PLAN=(${PLAN[@]}
+PLAN=(
+101-git.sh
+401-install-katello-devel.sh
+600-setup-katello-devel.sh
+601-checkout-katello.sh
+)
+
