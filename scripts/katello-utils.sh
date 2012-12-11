@@ -107,6 +107,18 @@ _kat-test-cli() {
     return 0
 }
 
+kat-start() {
+    if [ "$1" == "prod" ]; then
+        environment="production"
+    else
+        environment="development"
+    fi
+
+    cd $KAT_SRC_HOME
+    export RAILS_RELATIVE_URL_ROOT=/katello
+    rails s thin -p 5000 -e $environment
+}
+
 # Alias to katello shell
 alias kat="$KAT_CLI_HOME/bin/katello -u $KAT_USER -p $KAT_PASSWORD"
 alias katello="$KAT_CLI_HOME/bin/katello"
