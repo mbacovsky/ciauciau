@@ -43,7 +43,11 @@ kat-test-cli() {
 # Run katello spec tests
 kat-test-spec() {
   cd $KAT_SRC_HOME
-  rake spec $@
+  if [ $# -gt 0 ]; then
+    ruby -S rspec $@
+  else
+    find ./spec/ -name *_spec.rb | xargs ruby -S rspec
+  fi
   cd - > /dev/null
 }
 
