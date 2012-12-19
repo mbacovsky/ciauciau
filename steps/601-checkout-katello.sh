@@ -1,5 +1,5 @@
 
-KATELLO_SRC_DIR="/root/katello/"
+KATELLO_DIR="~/katello/"
 
 git clone git@github.com:mbacovsky/katello.git "$KATELLO_SRC_DIR"
 pushd "$KATELLO_SRC_DIR"
