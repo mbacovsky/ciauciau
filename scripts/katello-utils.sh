@@ -137,9 +137,15 @@ fm-start() {
 
     cd $FOREMAN_SRC_HOME
     export RAILS_RELATIVE_URL_ROOT=/$FOREMAN_PREFIX
+<<<<<<< HEAD
     if [ "$FOREMAN_WEBRICK_PORT" != "" ]; then
         bundle exec rails s -p $FOREMAN_WEBRICK_PORT -e $environment
     else
+=======
+    if [ "$FOREMAN_PORT" != "" ]; then 
+        bundle exec rails s -p $FOREMAN_PORT -e $environment
+    else    
+>>>>>>> 2273083... support for starting foreman from source
         bundle exec rails s -e $environment
     fi
 }
