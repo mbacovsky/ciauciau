@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+# add steps specific to this plan
+PLAN=(
+621-checkout-foreman.sh
+622-setup-foreman-devel.sh
+)
+
