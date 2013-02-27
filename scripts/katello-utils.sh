@@ -119,9 +119,42 @@ kat-start() {
     fi
 
     cd $KAT_SRC_HOME
-    export RAILS_RELATIVE_URL_ROOT=/katello
-    rails s thin -p 5000 -e $environment
+    export RAILS_RELATIVE_URL_ROOT=/$KAT_PREFIX
+    if [ "$KAT_THIN_PORT" != "" ]; then
+        rails s thin -p $KAT_THIN_PORT -e $environment
+    else
+        rails s thin -e $environment
+    fi
 }
+
+fm-start() {
+    if [ "$1" == "prod" ]; then
+        environment="production"
+    else
+        environment="development"
+    fi
+
+    cd $FOREMAN_SRC_HOME
+    export RAILS_RELATIVE_URL_ROOT=/$FOREMAN_PREFIX
+    if [ "$FOREMAN_WEBRICK_PORT" != "" ]; then
+        bundle exec rails s -p $FOREMAN_WEBRICK_PORT -e $environment
+    else
+        bundle exec rails s -e $environment
+    fi
+}
+
+kat-bundler-ext-on() {
+    if [ -f $KAT_SRC_HOME/Gemfile ]; then
+        mv $KAT_SRC_HOME/Gemfile $KAT_SRC_HOME/Gemfile.in
+    fi
+}
+
+kat-bundler-ext-off() {
+    if [ -f $KAT_SRC_HOME/Gemfile.in ]; then
+        mv $KAT_SRC_HOME/Gemfile.in $KAT_SRC_HOME/Gemfile
+    fi
+}
+
 
 # Alias to katello shell
 alias kat="$KAT_CLI_HOME/bin/katello -u $KAT_USER -p $KAT_PASSWORD"
